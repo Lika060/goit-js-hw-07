@@ -3,15 +3,15 @@ function getRandomHexColor() {
     .toString(16)
     .padStart(6, 0)}`;
 }
-const changeColorButton = document.querySelector(".change-color");
-const colorSpan = document.querySelector(".color");
+const refs = {
+  btnChangeColor: document.querySelector('.change-color'),
+  body: document.body,
+  colorSpan: document.querySelector('.color'),
+};
+const handleColorChange = event => {
+  const newColor = getRandomHexColor();
+  refs.body.style.backgroundColor = newColor;
+  refs.colorSpan.textContent = newColor;
+};
 
-changeColorButton.addEventListener("click", () => {
-    const newColor = getRandomHexColor();
-    document.body.style.backgroundColor = newColor;
-    colorSpan.textContent = newColor;
-});
-
-function getRandomHexColor() {
-    return `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0")}`;
-}
+refs.btnChangeColor.addEventListener('click', handleColorChange);
